@@ -1,0 +1,40 @@
+const Discord = require(`discord.js`);
+const { version } = require(`discord.js`);
+const moment = require(`moment`);
+require(`moment-duration-format`);
+
+exports.run = async (client, message) => { 
+	const duration = moment.duration(client.uptime).format(` D [days], H [hrs], m [mins], s [secs]`);
+	const msg = await message.channel.send(`Getting stats...`);
+	const embed = new Discord.RichEmbed()
+		.setAuthor(`Stats for Azen#4449`, client.user.avatarUrl)
+		.setDescription(`Here are a few stats:`)
+		.addField(`Mem Usage:`, `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}mb`, true)
+		.addField(`Uptime:`, `${duration}`, true)
+		.addField(`Users:`, client.users.size.toLocaleString(), true)
+		.addField(`Channels:`, client.channels.size.toLocaleString(), true)
+		.addField(`Servers:`, client.guilds.size.toLocaleString(), true)
+		.addField(`Discord.js:`, version, true)
+		.addField(`Node.js:`, process.version, true)
+		.addField(`Azen:`, `v2.0.0`, true)
+		.addField(`Creator:`, `Andreas#2166`, true)
+		.setFooter(`© 2018 Andreasaoneo | ${msg.createdTimestamp - message.createdTimestamp}ms.`, client.user.avatarUrl)
+		.setColor(0xff6961);
+	msg.delete();
+	message.channel.send( embed );
+};
+exports.conf = {
+	enabled: true,
+	guildOnly: false,
+	aliases: [`sts`, `sst`, `stast`, `s`],
+	permLevel: `User`,
+	secret: false
+};
+ 
+exports.help = {
+	name: `stats`,
+	category: `Miscelaneous`,
+	description: `Bot stats`,
+	extendedDescription: `Gives some usefull stats about the bot`,
+	usage: `stats`
+};
