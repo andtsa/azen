@@ -1,7 +1,7 @@
 const Discord = require(`discord.js`);
 const ytdl = require(`ytdl-core`);
 const YouTube = require(`simple-youtube-api`);
-
+var colors = require('colors');
 
 module.exports = client => {
   const youtube = new YouTube(client.config.googleApiKey);
@@ -25,7 +25,7 @@ module.exports = client => {
 
   client.log = (type, msg, title) => {
     if (!title) title = `Log`;
-    console.log(`[${type}] [${title}] ${msg}`);
+    console.log(`[${type.yellow}] [${title.blue}] ${msg}`);
   };
 
 //   client.awaitReply = async (msg, question, limit = 60000) => {
@@ -108,15 +108,15 @@ module.exports = client => {
   client.wait = require(`util`).promisify(setTimeout);
 
   process.on(`uncaughtException`, err => {
-    console.log(Date());
+    console.log(Date().red);
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, `g`), `./`);
-    console.error(`Uncaught Exception: `, errorMsg);
+    console.error(`Uncaught Exception: `.blue, errorMsg.yellow);
     process.exit(1);
   });
 
   process.on(`unhandledRejection`, err => {
-    console.log(Date());
-    console.error(`Uncaught Promise Error: `, err);
+    console.log(Date().red);
+    console.error(`Uncaught Promise Error: `.blue, err.yellow);
   });
 };
 

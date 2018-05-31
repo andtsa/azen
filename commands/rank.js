@@ -3,7 +3,6 @@ const Discord = require(`discord.js`);
 exports.run = async (client, message, args, level) => {
   const friendly = client.config.permLevels.find(l => l.level === level).name;
   client.send(
-    Discord,
     message.channel,
     `Permissions Level:`,
     `Your permission level is: ${level} - ${friendly}`
