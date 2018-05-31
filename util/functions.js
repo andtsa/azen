@@ -108,15 +108,14 @@ module.exports = client => {
   client.wait = require(`util`).promisify(setTimeout);
 
   process.on(`uncaughtException`, err => {
-    console.log(Date().red);
+    console.log(Date().blue);
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, `g`), `./`);
-    console.error(`Uncaught Exception: `.blue, errorMsg.yellow);
+    console.error(`Uncaught Exception: `.red, errorMsg.yellow);
     process.exit(1);
   });
 
   process.on(`unhandledRejection`, err => {
-    console.log(Date().red);
-    console.error(`Uncaught Promise Error: `.blue, err.yellow);
+    console.log(Date().blue);
+    console.error(`Uncaught Promise Error: `.red, err.yellow);
   });
 };
-
