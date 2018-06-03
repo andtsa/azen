@@ -1,30 +1,13 @@
 module.exports = (client, message) => {
   if (message.author.bot) return;
 
-  const settings = message.guild
-    ? client.settings.get(message.guild.id)
-    : client.config.defaultSettings;
+  const settings = message.guild ?
+    client.settings.get(message.guild.id) :
+    client.config.defaultSettings;
 
   message.settings = settings;
-
-  const args = message.content
-    .slice(settings.prefix.length)
-    .trim()
-    .split(/ +/g)
-    .slice(1);
-  const command = message.content
-    .slice(settings.prefix.length)
-    .trim()
-    .split(/ +/g)[0];
-
-  const level = client.permlevel(message);
-
-  const cmd =
-    client.commands.get(command) ||
-    client.commands.get(client.aliases.get(command));
-
   if (
-    settings.inviteBlock &&
+    settings.inviteBlock == true &&
     message.content.indexOf("discord.gg") !== 0 &&
     message.channel.type != "dm"
   ) {
@@ -38,8 +21,41 @@ module.exports = (client, message) => {
     );
   }
 
-  if (message.content.indexOf(settings.prefix) !== 0 && message.mentions.USERS_PATTERN != `<@361955559806730240>`) return;
+  if (message.content.toLowerCase().indexOf(settings.prefix.toLowerCase()) === 0) {
+    
+  } else if (message.content.indexOf(`@Azen `) === 0) {
+    const args = message.content
+      .slice()
+      .trim()
+      .split(/ +/g)
+      .slice(1);
+    const command = message.content
+      .slice(message.mentions.first().length)
+      .trim()
+      .split(/ +/g)[0]
+      .toLowerCase();
+  } else {
+    return;
+  }
 
+  const args = message.content
+    .slice(settings.prefix.length)
+    .trim()
+    .split(/ +/g)
+    .slice(1);
+  const command = message.content
+    .slice(settings.prefix.length)
+    .trim()
+    .split(/ +/g)[0]
+    .toLowerCase();
+  const level = client.permlevel(message);
+
+  const cmd =
+    client.commands.get(command) ||
+    client.commands.get(client.aliases.get(command));
+
+  if (message.content.toLowerCase().indexOf(settings.prefix.toLowerCase()) !== 0) return;
+  
   if (!cmd) return;
 
   if (cmd && !message.guild && cmd.conf.guildOnly) {
