@@ -73,6 +73,14 @@ module.exports = async (client) => {
     await client.wait(2000);
     client.user.setPresence({
       game: {
+        name: `a!h for help`,
+        url: `https://www.twitch.tv/andreasaoneo`,
+        type: 1
+      }
+    });
+    await client.wait(7000);
+    client.user.setPresence({
+      game: {
         name: `a!help for help`,
         url: `https://www.twitch.tv/andreasaoneo`,
         type: 1

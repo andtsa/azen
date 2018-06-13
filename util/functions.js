@@ -2,6 +2,7 @@ const Discord = require(`discord.js`);
 const ytdl = require(`ytdl-core`);
 const YouTube = require(`simple-youtube-api`);
 var colors = require('colors');
+// var usersFile = 
 
 module.exports = client => {
   const youtube = new YouTube(client.config.googleApiKey);
@@ -94,6 +95,13 @@ module.exports = client => {
     });
   }
 
+  client.addUser = async (uid) => {
+
+  }
+  client.muteUser = async (uid, muteDuration, reason) => {
+
+  }
+
   String.prototype.toProperCase = function() {
     return this.replace(
       /([^\W_]+[^\s-]*) */g,
@@ -107,15 +115,20 @@ module.exports = client => {
 
   client.wait = require(`util`).promisify(setTimeout);
 
-  process.on(`uncaughtException`, err => {
-    console.log(Date().blue);
-    const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, `g`), `./`);
-    console.error(`Uncaught Exception: `.red, errorMsg.yellow);
-    process.exit(1);
-  });
+  // process.on(`uncaughtException`, err => {
+  //   console.log(Date().blue);
+  //   const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, `g`), `./`);
+  //   console.error(`Uncaught Exception: `.red, errorMsg.yellow);
+  //   process.exit(1);
+  // });
 
   process.on(`unhandledRejection`, err => {
     console.log(Date().blue);
     console.error(`Uncaught Promise Error: `.red, err.yellow);
+  });
+
+  process.on(`unhandledError`, err => {
+    console.log(Date().blue);
+    console.error(`Uncaught Error: `.red, err.yellow);
   });
 };

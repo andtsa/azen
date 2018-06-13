@@ -7,10 +7,11 @@ exports.run = async (client, message) => {
 	const duration = moment.duration(client.uptime).format(` D [days], H [hrs], m [mins], s [secs]`);
 	const msg = await message.channel.send(`Getting stats...`);
 	const embed = new Discord.RichEmbed()
-		.setAuthor(`Stats for Azen#4449`, client.user.avatarUrl)
+		.setAuthor(`Stats for Azen`, client.user.avatarUrl)
 		.setDescription(`Here are a few stats:`)
 		.addField(`Mem Usage:`, `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}mb`, true)
 		.addField(`Uptime:`, `${duration}`, true)
+		.addField(`Ping:`, `${msg.createdTimestamp - message.createdTimestamp}ms. API: ${Math.round(client.ping)}ms`, true)
 		.addField(`Users:`, client.users.size.toLocaleString(), true)
 		.addField(`Channels:`, client.channels.size.toLocaleString(), true)
 		.addField(`Servers:`, client.guilds.size.toLocaleString(), true)
