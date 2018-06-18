@@ -129,6 +129,16 @@ module.exports = client => {
 
   process.on(`unhandledError`, err => {
     console.log(Date().blue);
-    console.error(`Uncaught Error: `.red, err.yellow);
+    console.error(`Uncaught Error: `.red, err.stack.yellow);
   });
+
+  client.on(`error`, e => {
+    console.log(Date().blue);
+    console.log(`Uncaught Error: `.red, e.stack);
+  });
+  process.on(`error`, e => {
+    console.log(Date().blue);
+    console.log(`Uncaught Error: `.red, e.stack.yellow);
+  });
+
 };
