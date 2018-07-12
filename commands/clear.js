@@ -43,7 +43,7 @@ exports.conf = {
 	enabled: false,
 	guildOnly: false,
 	aliases: [`del`, `delete`, `erase`, `remove`, `rmv`, `prg`, `purge`, `cl`],
-	permLevel: `Moderator`,
+	permLevel: 2,
 	secret: false
 };
 

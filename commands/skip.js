@@ -26,7 +26,7 @@ exports.conf = {
 	enabled: true,
 	guildOnly: true,
 	aliases: [`skipsong`, `next`, `nextsong`, `playnext`, `sk`],
-	permLevel: `User`,
+	permLevel: 0,
 	secret: false
 };
 

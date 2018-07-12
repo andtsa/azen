@@ -21,7 +21,7 @@ exports.conf = {
 	enabled: false,
 	guildOnly: true,
 	aliases: [`ps`],
-	permLevel: `User`,
+	permLevel: 0,
 	secret: true
 };
 

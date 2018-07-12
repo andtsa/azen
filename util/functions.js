@@ -1,6 +1,7 @@
 const Discord = require(`discord.js`);
 const ytdl = require(`ytdl-core`);
 const YouTube = require(`simple-youtube-api`);
+const fs = require(`fs`);
 var colors = require('colors');
 // var usersFile = 
 
@@ -24,10 +25,21 @@ module.exports = client => {
     return permlvl;
   };
 
-  client.log = (type, msg, title) => {
+  client.log = (type, msg, title, time = true) => {
     if (!title) title = `Log`;
-    console.log(`[${type.yellow}] [${title.blue}] ${msg}`);
+    if (time) {
+      console.log(`[${type.yellow}] [${title.blue}] ${msg}   [${Date().gray}]`);
+    } else {
+      console.log(`[${type.yellow}] [${title.blue}] ${msg}`);
+    }
   };
+
+  client.error = (type, err, title) => {
+    if (!title) title = `Uncaught error:`;
+    if (!type) type = `<UNDEFINED>`;
+    console.log(Date().blue);
+    console.error(`[${type.red}] ${title.magenta}`, err.yellow);
+  }
 
 //   client.awaitReply = async (msg, question, limit = 60000) => {
 //     const filter = m => (m.author.id = msg.author.id);
@@ -95,10 +107,7 @@ module.exports = client => {
     });
   }
 
-  client.addUser = async (uid) => {
-
-  }
-  client.muteUser = async (uid, muteDuration, reason) => {
+  client.unmuteuser = async (uid) => {
 
   }
 
@@ -129,16 +138,50 @@ module.exports = client => {
 
   process.on(`unhandledError`, err => {
     console.log(Date().blue);
-    console.error(`Uncaught Error: `.red, err.stack.yellow);
+    console.error(`Uncaught Error: `.red, err.yellow);
   });
 
-  client.on(`error`, e => {
+  process.on(`error`, err => {
     console.log(Date().blue);
-    console.log(`Uncaught Error: `.red, e.stack);
-  });
-  process.on(`error`, e => {
-    console.log(Date().blue);
-    console.log(`Uncaught Error: `.red, e.stack.yellow);
+    console.error(`Uncaught Error: `.red, err.yellow);
   });
 
+  client.on("error", (err) => {
+    console.log(Date().blue);
+    console.error(`Uncaught Client Error: `.red, err.yellow);
+  });
+  client.on("warn", (err) => {
+    console.log(Date().blue);
+    console.warn(`Client Warning: `.magenta, err.yellow);
+  });
+
+  client.on(`ready`, () => {
+    client.setInterval(() => {
+      for (let i in client.mutes) {
+        let time = client.mutes[i].period;
+        let guildId = client.mutes[i].guild;
+        let guild = client.guilds.get(guildId);
+        let channel = guild.channels.get(client.mutes[i].channel);
+        let member = guild.members.get(i);
+        let role = guild.roles.find(r => r.name === `muted`);
+        if (!role) continue;
+
+        if (Date.now() > time) {
+          member.removeRole(role);
+          delete client.mutes[i];
+          fs.writeFile(`./data/mutes.json`, JSON.stringify(client.mutes), err => {
+            if (err) {
+              return client.error(`mute writeFile err`, err, `Error writing to mutes file`);
+            }
+            channel.send(`<@${member.user.id}> has been unmuted!`);
+            client.log(`Unmute`, `${member.user.tag} has been unmuted in ${guild.name}!`, `User Unmute`);
+          }); 
+        }
+      }
+    }, 5000);
+  });
+  // client.on("debug", (err) => {
+  //   console.log(Date().blue);
+  //   console.info(`Debug: `.cyan, err.yellow);
+  // });
 };

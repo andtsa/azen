@@ -7,12 +7,12 @@ exports.run = async (client, message, args, level) => {
       : client.config.defaultSettings;
     const myCommands = message.guild // eslint-disable-line
       ? client.commands.filter(
-          cmd => client.levelCache[cmd.conf.permLevel] <= level &&
+          cmd => cmd.conf.permLevel <= level &&
           cmd.conf.secret !== true
         )
       : client.commands.filter(
           cmd =>
-            client.levelCache[cmd.conf.permLevel] <= level &&
+            cmd.conf.permLevel <= level &&
             cmd.conf.guildOnly !== true 
         );
     const commandNames = myCommands.keyArray(); // eslint-disable-line
@@ -21,7 +21,7 @@ exports.run = async (client, message, args, level) => {
       0
     ); // eslint-disable-line
     let currentCategory = ``;
-    let output = `> Use ${settings.prefix}help [command] for more details\n`; // eslint-disable-line
+    let output = `> Use ${settings.prefix}help [command] for more details\n> Use ${settings.prefix}help setup for help setting up Azen (IMPORTANT!)\n`; // eslint-disable-line
     const sorted = myCommands
       .array()
       .sort(
@@ -52,7 +52,22 @@ exports.run = async (client, message, args, level) => {
             client.user.avatarURL
       );
     msg.delete();
-    message.channel.send({ embed, split: `true` });
+    message.channel.send(embed);
+  } else if (args[0] == `setup`) {
+    const msg = await message.channel.send(`Getting help...`);
+    const settings = message.guild // eslint-disable-line
+      ? client.settings.get(message.guild.id)
+      : client.config.defaultSettings;
+    const embed = new Discord.RichEmbed()
+      .setAuthor(`Azen Setup`, client.user.avatarURL)
+      .setTitle(`Steps setting up Azen:`)
+      .addField(`**1.** Set Moderator role:`, `Do \`${settings.prefix}set modRole [your moderator role name]\``)
+      .addField(`**2.** Set Administrator role:`, `Do \`${settings.prefix}set adminRole [your administrator role name]\``)
+      .addField(`**3.** Set Modlog channel:`, `The modlog channel will be the channel where all the moderation logs will be sent:\n Do \`${settings.prefix}set modLogChannel [your modlog channel name]\`\n and then do \`${settings.prefix}set modLogEnabled true\``)
+      .setColor(0xff6961)
+      .setFooter(`© 2018 Andreasaoneo | ${msg.createdTimestamp - message.createdTimestamp}ms.`, client.user.avatarURL);
+    msg.delete();
+    message.channel.send(embed);
   } else {
     const msg = await message.channel.send(`Getting help...`);
     const settings = message.guild // eslint-disable-line
@@ -69,7 +84,7 @@ exports.run = async (client, message, args, level) => {
         .setFooter(`© 2018 Andreasaoneo | ${msg.createdTimestamp - message.createdTimestamp}ms.`, client.user.avatarURL)
         .setColor(0xff6961);
       msg.delete();
-      message.channel.send({ embed });
+      message.channel.send(embed);
     }
   }
 };
@@ -78,7 +93,7 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: [`h`, `halp`],
-  permLevel: `User`,
+  permLevel: 0,
   secret: false
 };
 

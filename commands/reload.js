@@ -32,7 +32,7 @@ exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: [],
-    permLevel: `Developer`,
+    permLevel: 8,
     secret: false
 };
 

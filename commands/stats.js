@@ -28,7 +28,7 @@ exports.conf = {
 	enabled: true,
 	guildOnly: false,
 	aliases: [`sts`, `sst`, `stast`, `s`],
-	permLevel: `User`,
+	permLevel: 0,
 	secret: false
 };
  

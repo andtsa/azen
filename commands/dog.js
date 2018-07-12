@@ -31,15 +31,15 @@ exports.run = async (client, message, args) => {
 
 exports.conf = {
 	enabled: true,
-	guildOnly: true,
+	guildOnly: false,
 	aliases: [`dogs`, `puppy`, `doggo`],
-	permLevel: `User`,
+	permLevel: 0,
 	secret: false
 };
 
 exports.help = {
 	name: `dog`,
-	category: `Doggos`,
+	category: `Fun`,
 	description: `Sends a dog pic`,
 	extendedDescription: `Send a random dog picture`,
 	usage: `dog [times]`

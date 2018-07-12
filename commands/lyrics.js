@@ -43,7 +43,7 @@ exports.conf = {
 	enabled: true,
 	guildOnly: true,
 	aliases: [`l`, `lyr`, `lirics`, `lyrycs`, `lirycs`, `lyric`],
-	permLevel: `User`,
+	permLevel: 0,
 	secret: true
 };
 

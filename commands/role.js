@@ -35,7 +35,7 @@ exports.conf = {
 	enabled: true,
 	guildOnly: true,
 	aliases: [`newrole`, `createrole`, `makerole`],
-	permLevel: `Moderator`,
+	permLevel: 2,
 	secret: true
 };
 

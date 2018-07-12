@@ -55,7 +55,7 @@ exports.run = async (client, message, args) => {
 		} catch (err) {
 			console.log('No results gotten');
 			console.error(e);
-			return message.channel.send(`No results!`);
+			return message.reply(`No results!`);
 		}
 	}
 
@@ -88,7 +88,7 @@ exports.conf = {
 	enabled: true,
 	guildOnly: true,
 	aliases: [`play`, `song`, `playsong`, `music`, `pl`],
-	permLevel: `User`,
+	permLevel: 0,
 	secret: false
 };
 

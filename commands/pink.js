@@ -10,7 +10,7 @@ exports.conf = {
 	enabled: true,
 	guildOnly: false,
 	aliases: [],
-	permLevel: `User`,
+	permLevel: 0,
 	secret: true
 };
 

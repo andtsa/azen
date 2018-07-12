@@ -44,7 +44,7 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: [`inv`, `add`, `invitation`],
-  permLevel: `User`,
+  permLevel: 0,
   secret: false
 };
 

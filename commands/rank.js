@@ -13,7 +13,7 @@ exports.conf = {
   enabled: true,
   guildOnly: true,
   aliases: [`rank`, `level`, `myrank`, `mylevel`, `rnk`],
-  permLevel: `User`,
+  permLevel: 0,
   secret: false
 };
 

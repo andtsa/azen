@@ -22,7 +22,7 @@ exports.conf = {
 	enabled: true,
 	guildOnly: true,
 	aliases: [`q`],
-	permLevel: `User`,
+	permLevel: 0,
 	secret: false
 };
 

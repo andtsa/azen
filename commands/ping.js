@@ -14,7 +14,7 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: [`pong`, `delay`, `speed`, `p`],
-  permLevel: `User`,
+  permLevel: 0,
   secret: false
 };
 

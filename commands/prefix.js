@@ -25,7 +25,7 @@ exports.conf = {
 	enabled: true,
 	guildOnly: true,
 	aliases: [`pref`, `setprefix`, `newprefix`, `editprefix`],
-	permLevel: `Moderator`,
+	permLevel: 2,
 	secret: false
 };
 

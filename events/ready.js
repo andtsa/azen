@@ -11,7 +11,7 @@ module.exports = async (client) => {
 
   client.user.setPresence({
     game: {
-      name: `[V2.0 IS OUT] a!help for help`,
+      name: `[V2.5 IS OUT] a!help for help`,
       url: `https://www.twitch.tv/andreasaoneo`,
       type: 1
     }
@@ -39,7 +39,7 @@ module.exports = async (client) => {
     // client.log(`Status`, `Switching Presence (${Date()})`, `Switching...`);
     client.user.setPresence({
       game: {
-        name: `[V2.0 IS OUT] | on ${client.guilds.size} servers`,
+        name: `[V2.5] | on ${client.guilds.size} servers`,
         url: `https://www.twitch.tv/andreasaoneo`,
         type: 1
       }
@@ -73,7 +73,7 @@ module.exports = async (client) => {
     await client.wait(2000);
     client.user.setPresence({
       game: {
-        name: `a!h for help`,
+        name: `#24/7 | a!h for help`,
         url: `https://www.twitch.tv/andreasaoneo`,
         type: 1
       }
