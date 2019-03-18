@@ -15,7 +15,7 @@ exports.run = async (client, message) => {
 		output += `${song.artist.toUpperCase()}:\n   ${song.title} \n \n`
 	});
 	
-	return client.send(message.channel, `Song Queue`, `\`\`\`ruby\n${output}\`\`\``);
+	return client.send(message.channel, `Song Queue`, `\`\`\`ruby\n ${output}\`\`\``);
 }
 
 exports.conf = {

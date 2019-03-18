@@ -36,51 +36,38 @@ exports.run = async (client, message, args) => {
 	const url = args[0];
 	const searchString = args.join(' ');
 	var video, videos;
-
-	try {
-		await youtube.getVideo(url).then(res => {
-			video = res;
-			console.log('Got the video');
-		});
-	} catch (error) {
-		console.log('Didnt get the video, search for it');
-		try {
-			await youtube.searchVideos(searchString, 1).then(res => {
-				videos = res;
-			}).catch(console.error);
-			await youtube.getVideoByID(videos[0].id).then(res => {
-				video = res;
-			}).catch(console.error);
-			console.log('Got search results');
-		} catch (err) {
-			console.log('No results gotten');
-			console.error(e);
-			return message.reply(`No results!`);
+	if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
+		const playlist = await youtube.getPlaylist(url);
+		const videos = await playlist.getVideos();
+		let list = [];
+		for (const video of Object.values(videos)) {
+			const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
+			list.append(await client.handleVideo(video2, message, args, true)); // eslint-disable-line no-await-in-loop
 		}
-	}
-
-	let song = {
-		id: video.raw.id,
-		title: video.raw.snippet.title,
-		artist: video.raw.snippet.channelTitle,
-		duration: `${video.duration.hours}h ${video.duration.minutes}m ${video.duration.seconds}s`,
-		url: `https://www.youtube.com/watch?v=${video.raw.id}`
-	}
-
-	if (message.guild.voiceConnection) {
-		server.queue.push(song);
-		message.channel.send('Song added to queue');
-		client.send(message.channel, `In Queue: ${song.title} by ${song.artist}!`, `<${song.url}> \n ${song.duration}`);
-		console.log(server.queue);
+		client.send(message.channel, `In Queue:`, list);
 	} else {
-		server.queue.push(song);
-		message.channel.send('Song playing :notes:');
-		console.log(server.queue);
-	}
-	if (!message.guild.voiceConnection) {
-		message.member.voiceChannel.join().then(function (connection) {
-			client.play(connection, message, args);
-		});
+		try {
+			await youtube.getVideo(url).then(res => {
+				video = res;
+				console.log('Got the video');
+			});
+		} catch (error) {
+			console.log('Didnt get the video, search for it');
+			try {
+				await youtube.searchVideos(searchString, 1).then(res => {
+					videos = res;
+				}).catch(console.error);
+				await youtube.getVideoByID(videos[0].id).then(res => {
+					video = res;
+				}).catch(console.error);
+				console.log('Got search results');
+			} catch (err) {
+				console.log('No results gotten');
+				console.error(e);
+				return message.reply(`No results!`);
+			}
+		}
+		return client.handleVideo(video, message, args);
 	}
 };
 

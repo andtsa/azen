@@ -16,7 +16,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
 	enabled: true,
 	guildOnly: true,
-	aliases: [`stop`, `stopplaying`, `end`, `bequiet`],
+	aliases: [`stop`, `stopplaying`, `end`, `bequiet`, `stap`, `stapp`, `stapit`, `stfu`],
 	permLevel: 0,
 	secret: false
 };

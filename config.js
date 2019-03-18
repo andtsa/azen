@@ -1,9 +1,9 @@
 const config = {
-  owners: [``],
+  owners: [`281387075608248320`],
 
   testers: [],
 
-  admins: [],
+  admins: [``],
 
   developers: [],
 
@@ -11,8 +11,14 @@ const config = {
 
   designers: [],
 
-  token: `--`,
-  googleApiKey: `--`,
+  donators: [],
+
+  // MzgyNzQ3MzA5ODYxMjQwODMz.DPaMxQ.TyvR6gk7Aldkonc9z4ADOgAos80 AndreasBot https://discordapp.com/oauth2/authorize?client_id=382747309861240833&permissions=2146958591&scope=bot
+  // MzYxOTU1NTU5ODA2NzMwMjQw.DKvWLA.KVzRrqJi2YmxUDbn8z8uCPGo8Rs Azen
+  // MzkyMDk3NTQ5MzE1NzM1NTcy.DRiX-g.OvxcNsRnGt0s1YH-TEhq95UIDR8 rndm
+  // Mzc3ODY0NDgxNjMzNzMwNTYz.DesyCg.UCi1dfQve1oHHl_Bg9ZCxp1UvHo node.py
+  token: `MzYxOTU1NTU5ODA2NzMwMjQw.DKvWLA.KVzRrqJi2YmxUDbn8z8uCPGo8Rs`,
+  googleApiKey: `AIzaSyB6GGhSFH-jgQA-dLEc2hjb0sEzkZ_0JQc`,
 
   defaultSettings: {
     prefix: `a!`,
@@ -32,7 +38,11 @@ const config = {
       name: `User`,
       check: () => true
     },
-
+    {
+      level: 1,
+      name: `Donator`,
+      check: message => config.donators.includes(message.author.id)
+    },
     {
       level: 2,
       name: `Moderator`,
@@ -111,4 +121,3 @@ const config = {
 };
 
 module.exports = config;
-

@@ -2,6 +2,7 @@ const Discord = require(`discord.js`);
 const ytdl = require(`ytdl-core`);
 const YouTube = require(`simple-youtube-api`);
 const fs = require(`fs`);
+const a = require("algebrite");
 var colors = require('colors');
 // var usersFile = 
 
@@ -107,6 +108,40 @@ module.exports = client => {
     });
   }
 
+  client.handleVideo = async (video, message, args, playlist = false) => {
+    let server = client.servers[message.guild.id];
+    let song = {
+      id: video.raw.id,
+      title: video.raw.snippet.title,
+      artist: video.raw.snippet.channelTitle,
+      duration: `${video.duration.hours}h ${video.duration.minutes}m ${video.duration.seconds}s`,
+      url: `https://www.youtube.com/watch?v=${video.raw.id}`
+    }
+
+    if (message.guild.voiceConnection) {
+      server.queue.push(song);
+      if (playlist) {
+        returned = `${song.title} by ${song.artist}!, <${song.url}> \n ${song.duration}`;
+      } else {
+        message.channel.send('Song added to queue');
+        client.send(message.channel, `In Queue: ${song.title} by ${song.artist}!`, `<${song.url}> \n ${song.duration}`);
+      }
+      console.log(server.queue);
+    } else {
+      server.queue.push(song);
+      message.channel.send('Song playing :notes:');
+      console.log(server.queue);
+    }
+    if (!message.guild.voiceConnection) {
+      message.member.voiceChannel.join().then(function (connection) {
+        client.play(connection, message, args);
+      });
+    }
+    if (playlist) {
+      return returned;
+    }
+  }
+
   client.unmuteuser = async (uid) => {
 
   }
@@ -133,7 +168,7 @@ module.exports = client => {
 
   process.on(`unhandledRejection`, err => {
     console.log(Date().blue);
-    console.error(`Uncaught Promise Error: `.red, err.yellow);
+    console.error(`Uncaught Promise Error: `.red, err);
   });
 
   process.on(`unhandledError`, err => {
@@ -148,7 +183,7 @@ module.exports = client => {
 
   client.on("error", (err) => {
     console.log(Date().blue);
-    console.error(`Uncaught Client Error: `.red, err.yellow);
+    console.error(`Uncaught Client Error: `.red, err);
   });
   client.on("warn", (err) => {
     console.log(Date().blue);

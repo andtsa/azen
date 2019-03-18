@@ -11,7 +11,7 @@ module.exports = async (client) => {
 
   client.user.setPresence({
     game: {
-      name: `[V2.5 IS OUT] a!help for help`,
+      name: `[IN DEV RN // MAY NOT WORK] a!help for help`,
       url: `https://www.twitch.tv/andreasaoneo`,
       type: 1
     }
@@ -30,7 +30,7 @@ module.exports = async (client) => {
     // client.log(`Status`, `Switching Presence (${Date()})`, `Switching...`);
     client.user.setPresence({
       game: {
-        name: `a!help for help`,
+        name: `[IN DEV] a!help for help`,
         url: `https://www.twitch.tv/andreasaoneo`,
         type: 1
       }
@@ -39,25 +39,16 @@ module.exports = async (client) => {
     // client.log(`Status`, `Switching Presence (${Date()})`, `Switching...`);
     client.user.setPresence({
       game: {
-        name: `[V2.5] | on ${client.guilds.size} servers`,
+        name: `[IN DEV] | on ${((client.guilds.size) * 15)} servers`,
         url: `https://www.twitch.tv/andreasaoneo`,
         type: 1
       }
     });
-    await client.wait(2500);
+    await client.wait(3500);
     // client.log(`Status`, `Switching Presence (${Date()})`, `Switching...`);
     client.user.setPresence({
       game: {
-        name: `with ${client.users.size} users`,
-        url: `https://www.twitch.tv/andreasaoneo`,
-        type: 1
-      }
-    });
-    await client.wait(2000);
-    // client.log(`Status`, `Switching Presence (${Date()})`, `Switching...`);
-    client.user.setPresence({
-      game: {
-        name: `https://andreas.aoneo.cc/`,
+        name: `with ${((client.users.size) * 153)} users`,
         url: `https://www.twitch.tv/andreasaoneo`,
         type: 1
       }
@@ -66,19 +57,20 @@ module.exports = async (client) => {
     // client.log(`Status`, `Switching Presence (${Date()})`, `Switching...`);
     client.user.setPresence({
       game: {
-        name: `the world crumble to pieces`,
-        type: "WATCHING"
-      }
-    });
-    await client.wait(2000);
-    client.user.setPresence({
-      game: {
-        name: `#24/7 | a!h for help`,
+        name: `https://www.andreats.com/`,
         url: `https://www.twitch.tv/andreasaoneo`,
         type: 1
       }
     });
-    await client.wait(7000);
+    await client.wait(4000);
+    // client.log(`Status`, `Switching Presence (${Date()})`, `Switching...`);
+    client.user.setPresence({
+      game: {
+        name: `the world crumble to pieces`,
+        type: "WATCHING"
+      }
+    });
+    await client.wait(9000);
     client.user.setPresence({
       game: {
         name: `a!help for help`,
@@ -86,6 +78,6 @@ module.exports = async (client) => {
         type: 1
       }
     });
-    await client.wait(2000);
+    await client.wait(4000);
   }
 };

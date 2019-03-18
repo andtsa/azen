@@ -18,11 +18,11 @@ exports.run = async (client, message, args) => {
 }
 
 exports.conf = {
-	enabled: false,
+	enabled: true,
 	guildOnly: true,
 	aliases: [`ps`],
 	permLevel: 0,
-	secret: true
+	secret: false
 };
 
 exports.help = {
