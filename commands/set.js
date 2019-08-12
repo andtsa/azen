@@ -5,7 +5,7 @@ exports.run = async (client, message, [key, ...value], level) => { // eslint-dis
     const settings = client.settings.get(message.guild.id);
 
     console.log(settings);
-
+ 
     if (!key) {
         return message.channel.send(inspect(settings), {
             code: `json`

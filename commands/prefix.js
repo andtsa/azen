@@ -13,7 +13,12 @@ exports.run = async (client, message, args) => {
 		await client.send(message.channel, `Error!`, `Please specify a new value!`);
 		return;
 	}
-
+	let prefix;
+	if (args.length > 1) {
+		if (args[0] == `"` && args[args.length-1] == `"`) {
+			prefix = args.slice
+		}
+	}
 	settings['prefix'] = args[0];
 
 	client.settings.set(message.guild.id, settings);

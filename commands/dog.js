@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
 					.setTitle('Dogs')
 					.setImage(result)
 					.setColor(0xff6961)
-					.setFooter(`Â© 2018 Dogs`, client.user.avatarURL);
+					.setFooter(`© 2019 Doggos`, client.user.avatarURL);
 				return message.channel.send(embed);
 			}).catch((err) => {
 				console.error(err);
@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
 				.setTitle('Dog')
 				.setImage(result)
 				.setColor(0xff6961)
-				.setFooter(`Â© 2018 Doggos`, client.user.avatarURL);
+				.setFooter(`© 2019 Doggos`, client.user.avatarURL);
 			return message.channel.send(embed);
 		}).catch((err) => {
 			console.error(err);

@@ -80,7 +80,7 @@ module.exports = client => {
     let embed = new Discord.RichEmbed()
       .addField(title, content)
       .setColor(!color ? 0xff6961 : color)
-      .setFooter(`© 2018 Andreasaoneo || https://andreas.aoneo.cc/`, client.user.avatarURL);
+      .setFooter(`� 2018 Andreasaoneo || https://andreats.com/`, client.user.avatarURL);
     channel.send(embed);
   };
 

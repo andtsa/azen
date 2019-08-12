@@ -5,8 +5,7 @@ const YouTube = require(`simple-youtube-api`);
 
 exports.run = async (client, message, args) => {
 	const youtube = new YouTube(client.config.googleApiKey);
-	const settings = message.guild 
-		?
+	const settings = message.guild ?
 		client.settings.get(message.guild.id) :
 		client.config.defaultSettings;
 	if (!args[0]) {

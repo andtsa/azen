@@ -4,7 +4,7 @@ const GphApiClient = require("giphy-js-sdk-core");
 const giphy = GphApiClient("HqxYG1faw1E1WYsToglY5eQ4tpZBGvly");
 
 exports.run = async (client, message, args) => {
-	let msg = await message.channel.send(`Calling all cats...`);
+	let msg = await message.channel.send(`Meow...`);
 	if (Number.isInteger(args[0])) {
 		for (i = 0; i < args[0]; i++) {
 			try {
@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
 					.setTitle('Cat')
 					.setImage(file)
 					.setColor(0xff6961)
-					.setFooter(`Â© 2018 Cats`, client.user.avatarURL);
+					.setFooter(`© 2019 Cats`, client.user.avatarURL);
 				msg.delete();
 				return message.channel.send(embed);
 				// .then((result) => {
@@ -34,7 +34,7 @@ exports.run = async (client, message, args) => {
 				.setTitle('Cat')
 				.setImage(res.gifObject.embed_url)
 				.setColor(0xff6961)
-				.setFooter(`Â© 2018 Cats`, client.user.avatarURL);
+				.setFooter(`© 2019 Cats`, client.user.avatarURL);
 			msg.delete();
 			return message.channel.send(embed);
 		}).catch((err) => {
@@ -48,7 +48,7 @@ exports.run = async (client, message, args) => {
 					.setTitle('Cat')
 					.setImage(result.body.file)
 					.setColor(0xff6961)
-					.setFooter(`Â© 2018 Cats`, client.user.avatarURL);
+					.setFooter(`© 2019 Cats`, client.user.avatarURL);
 				msg.delete();
 				return message.channel.send(embed);
 			}).catch((err) => {
@@ -73,7 +73,7 @@ exports.conf = {
 exports.help = {
 	name: `cat`,
 	category: `Fun`,
-	description: `[OUT OF ORDER] Sends a cat pic`,
+	description: `Sends a cat pic`,
 	extendedDescription: `Send a random cat picture`,
 	usage: `cat [times]`
 };

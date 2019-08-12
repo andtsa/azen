@@ -12,7 +12,6 @@ bot.on('message', message => {
 	} else {
 		console.log(`[MSG], [BY: ${message.author.tag}] [IN: DM]: "${message.content}"`);
 	}
-	
 });
 
 bot.login(config.token);

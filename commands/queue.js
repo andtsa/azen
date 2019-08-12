@@ -11,8 +11,10 @@ exports.run = async (client, message) => {
 	let queue = client.servers[message.guild.id].queue;
 	console.log(queue);
 	let output = ``;
+	let i = 1;
 	queue.forEach(song => {
-		output += `${song.artist.toUpperCase()}:\n   ${song.title} \n \n`
+		output += `${i}) ${song.artist.toUpperCase()} :\n  ${song.title} \n \n`;
+		i++;
 	});
 	
 	return client.send(message.channel, `Song Queue`, `\`\`\`ruby\n ${output}\`\`\``);

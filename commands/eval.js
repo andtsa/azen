@@ -16,7 +16,7 @@ exports.run = async (client, message, args, level) => {
           const embed = new Discord.RichEmbed()
             .addField(`:inbox_tray: Input:`, `\`\`\`js\n${code}\n\`\`\``)
             .addField(`:outbox_tray: Output:`, `\`\`\`The output was too long, so I've posted it to hastebin: ${link}\`\`\``)
-            .setFooter(`Â© 2017 Aoneo & Affinix`, client.user.avatarURL)
+            .setFooter(`© 2019 Andreats & Affinix`, client.user.avatarURL)
             .setColor(0xff6961);
           message.channel.send({ embed });
         })
@@ -26,7 +26,7 @@ exports.run = async (client, message, args, level) => {
     const embed = new Discord.RichEmbed()
       .addField(`:inbox_tray: Input:`, `\`\`\`js\n${code}\n\`\`\``)
       .addField(`:outbox_tray: Output:`, `\`\`\`js\n${clean}\n\`\`\``)
-      .setFooter(`Â© 2017 Aoneo & Affinix`, client.user.avatarURL)
+      .setFooter(`© 2019 Andreats & Affinix`, client.user.avatarURL)
       .setColor(0xff6961);
     await message.channel.send({ embed });
   } catch (err) {
@@ -37,7 +37,7 @@ exports.run = async (client, message, args, level) => {
           const embed = new Discord.RichEmbed()
             .addField(`:inbox_tray: Input:`, `\`\`\`js\n${code}\n\`\`\``)
             .addField(`:outbox_tray: Output:`, `\`\`\`The output was too long, so I've posted it to hastebin: ${link}\`\`\``)
-            .setFooter(`Â© 2017 Aoneo & Affinix`, client.user.avatarURL)
+            .setFooter(`© 2019 Andreats & Affinix`, client.user.avatarURL)
             .setColor(0xff6961);
           message.channel.send({ embed });
         })
@@ -49,7 +49,7 @@ exports.run = async (client, message, args, level) => {
       .setAuthor(client.user.username, client.user.avatarURL)
       .addField(`:inbox_tray: Input:`, `\`\`\`js\n${code}\n\`\`\``)
       .addField(`:outbox_tray: Error!`, `\`\`\`xl\n${errClean}\n\`\`\``)
-      .setFooter(`Â© 2018 Andreasaoneo || https://andreas.aoneo.cc/`, client.user.avatarURL);
+      .setFooter(`© 2019 Andreats || https://andreats.com/`, client.user.avatarURL);
     await message.channel.send(embed);
   }
 };

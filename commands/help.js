@@ -47,7 +47,7 @@ exports.run = async (client, message, args, level) => {
       .setDescription(`\`\`\`ruby\n${output}\n\`\`\``)
       .setColor(0xff6961)
       .setFooter(
-        `Â© 2018 Andreasaoneo | ${msg.createdTimestamp -
+        `© 2019 Andreats | ${msg.createdTimestamp -
             message.createdTimestamp}ms.`,
             client.user.avatarURL
       );
@@ -65,7 +65,7 @@ exports.run = async (client, message, args, level) => {
       .addField(`**2.** Set Administrator role:`, `Do \`${settings.prefix}set adminRole [your administrator role name]\``)
       .addField(`**3.** Set Modlog channel:`, `The modlog channel will be the channel where all the moderation logs will be sent:\n Do \`${settings.prefix}set modLogChannel [your modlog channel name]\`\n and then do \`${settings.prefix}set modLogEnabled true\``)
       .setColor(0xff6961)
-      .setFooter(`Â© 2018 Andreasaoneo | ${msg.createdTimestamp - message.createdTimestamp}ms.`, client.user.avatarURL);
+      .setFooter(`© 2019 Andreats | ${msg.createdTimestamp - message.createdTimestamp}ms.`, client.user.avatarURL);
     msg.delete();
     message.channel.send(embed);
   } else {
@@ -81,7 +81,7 @@ exports.run = async (client, message, args, level) => {
         .setAuthor(`Help | ${settings.prefix}${command.help.name}`, client.user.avatarURL)
         .addField(`Description:`, `${command.help.extendedDescription}`)
         .addField(`Usage:`, `\`\`\`${settings.prefix}${command.help.usage}\`\`\``)
-        .setFooter(`Â© 2018 Andreasaoneo | ${msg.createdTimestamp - message.createdTimestamp}ms.`, client.user.avatarURL)
+        .setFooter(`© 2019 Andreats | ${msg.createdTimestamp - message.createdTimestamp}ms.`, client.user.avatarURL)
         .setColor(0xff6961);
       msg.delete();
       message.channel.send(embed);

@@ -25,15 +25,17 @@
     "musicmatch": "^0.3.2",
     "node-opus": "^0.3.1",
     "opusscript": "0.0.6",
+    "pngjs-image": "^0.11.7",
     "random-puppy": "^1.1.0",
     "simple-youtube-api": "^5.0.2",
     "snekfetch": "^4.0.1",
     "soundcloud": "^3.3.0",
     "urban": "^0.3.1",
+    "wolfram-alpha": "^0.6.0",
     "ytdl-core": "^0.20.2"
   },
   "devDependencies": {
     "algebrite": "^1.2.0",
-    "discord.js": "^11.4.2"
+    "discord.js": "^11.5.0"
   }
 }

@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
 	const settings = message.guild ? client.settings.get(message.guild.id) : client.config.defaultSettings;
 	let deletePerms = message.guild.member(client.user).hasPermission('MANAGE_MESSAGES');
 	let amount = args[0];
-	let modlog = message.guild.channels.find("name", settings.modLogChannel);
+	let modlog = message.guild.channels.find(channel => channel.name === settings.modLogChannel);
 
 	if (!amount) return client.send(message.channel, `Syntax Error!`, `${settings.prefix}clear [amount]`);
 	if (!deletePerms) return client.send(message.channel, `Error!`, `I don't have the permission to do that!`);
@@ -15,7 +15,7 @@ exports.run = async (client, message, args) => {
 
 	amount = parseInt(parseInt(amount) + 1);
 
-	if (amount < 2 || amount > 250) return client.send(message.channel, `Error!`, `The amount of messages to be deleted has to bee inbetween 1 and 250!`);
+	if (amount < 2 || amount > 100) return client.send(message.channel, `Error!`, `The amount of messages to be deleted has to bee inbetween 1 and 99!`);
 
 	message.channel.fetchMessages({
 		limit: amount
@@ -40,7 +40,7 @@ exports.run = async (client, message, args) => {
 };
 
 exports.conf = {
-	enabled: false,
+	enabled: true,
 	guildOnly: false,
 	aliases: [`del`, `delete`, `erase`, `remove`, `rmv`, `prg`, `purge`, `cl`],
 	permLevel: 2,
@@ -50,7 +50,7 @@ exports.conf = {
 exports.help = {
 	name: `clear`,
 	category: `Moderation`,
-	description: `Deletes the given ammount of messages`,
+	description: `Deletes the given ammount of messages (note: messages older than 2 weeks cannot be deleted)`,
 	extendedDescription: `I delete the given amount of messages and log it to the modlog channel`,
 	usage: `clear [amount]`
 };

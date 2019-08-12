@@ -26,7 +26,7 @@ const config = {
     modLogEnabled: `false`,
     modRole: `Mod`,
     adminRole: `Admin`,
-    inviteBolck: `false`,
+    inviteBlock: `false`,
     welcomeChannel: `welcome`,
     welcomeMessage: `Please welcome {{mention}}, everyone!`,
     welcomeEnabled: `false`,
