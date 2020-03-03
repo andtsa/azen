@@ -1,9 +1,9 @@
 const config = {
-  owners: [`281387075608248320`],
+  owners: [``],
 
   testers: [],
 
-  admins: [`326361540183719937`, `356598510138818560`],
+  admins: [``, ``],
 
   developers: [],
 
@@ -17,8 +17,8 @@ const config = {
   // MzYxOTU1NTU5ODA2NzMwMjQw.DKvWLA.KVzRrqJi2YmxUDbn8z8uCPGo8Rs Azen
   // MzkyMDk3NTQ5MzE1NzM1NTcy.DRiX-g.OvxcNsRnGt0s1YH-TEhq95UIDR8 rndm
   // Mzc3ODY0NDgxNjMzNzMwNTYz.DesyCg.UCi1dfQve1oHHl_Bg9ZCxp1UvHo node.py
-  token: `MzYxOTU1NTU5ODA2NzMwMjQw.XVXHDA.KolUIgoKZmDXN-pe36koajgdc00`,
-  googleApiKey: `AIzaSyB6GGhSFH-jgQA-dLEc2hjb0sEzkZ_0JQc`,
+  token: ``,
+  googleApiKey: ``,
 
   defaultSettings: {
     prefix: `a!`,
