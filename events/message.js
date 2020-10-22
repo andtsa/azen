@@ -1,5 +1,63 @@
+const Discord = require(`discord.js`);
 module.exports = (client, message) => {
+  //client.blockMessage(message);
+
+
+//// Messageblocking temp
+
+  if (message.guild && message.author != client.user) {
+    const settings = message.guild ?
+      client.settings.get(message.guild.id) :
+      client.config.defaultSettings;
+
+    const MBlevel = client.permlevel(message);
+    let modlog = message.guild.channels.find(channel => channel.name === settings.modLogChannel);
+
+    if (settings.blocked && settings.blocked[message.channel.id]) { 
+      for (let i = 0; i < (settings.blocked[message.channel.id]).length; i++) {
+        if (message.content.indexOf(settings.blocked[message.channel.id][i]) != -1) {
+          message.delete().then(() => {
+            client.log(
+              `Delete`,
+              `Message "${message.content}" by ${message.author.tag} deleted in #${message.channel.name}`
+            );
+            if (!modlog) {
+              console.log(`No modlog`);
+            } else if (settings.modLogEnabled.toLowerCase() === `true`) {
+              let embed = new Discord.RichEmbed()
+                .setTitle('MessageBlock')
+                .setAuthor('Mod-log entry | Block', message.author.avatarURL)
+                .addField(`Author:`, message.author.tag)
+                .addField(`Message:`, message.content, true)
+                .setTimestamp()
+                .setColor(0xff6961)
+              modlog.send(embed);
+            }
+          });
+        }
+      }
+    }
+  }
+
+
+  //console.log(message.channel.id, message.channel.name, message.content)
+  // if (
+  //   message.channel.id == `767397245304700948` &&
+  //   (message.content.indexOf(`roi des merguez`) != -1 ||
+  //     message.content.indexOf(`Malo.`) != -1 ||
+  //     message.content.indexOf(`Lord Eggnog`) != -1)
+  // )
+  //   message.delete().then(() => {
+  //     client.log(
+  //       `Delete`,
+  //       `Message "${message.content}" by ${message.author.tag} deleted in #${message.channel.name}`
+  //     );
+  //   });
+
+  if (message.channel.id == `758626666921721856` && message.content.indexOf(`0 RADIANCE`) != -1) message.react(`😞`);
+
   if (message.author.bot) return;
+  
   const settings = message.guild ?
     client.settings.get(message.guild.id) :
     client.config.defaultSettings;

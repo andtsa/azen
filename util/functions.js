@@ -4,6 +4,7 @@ const YouTube = require(`simple-youtube-api`);
 const fs = require(`fs`);
 const a = require("algebrite");
 var colors = require('colors');
+const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
 // var usersFile = 
 
 module.exports = client => {
@@ -39,7 +40,7 @@ module.exports = client => {
     if (!title) title = `Uncaught error:`;
     if (!type) type = `<UNDEFINED>`;
     console.log(Date().blue);
-    console.error(`[${type.red}] ${title.magenta}`, err.yellow);
+    console.error(`[${type.red}] ${title.magenta}`, err);
   }
 
 //   client.awaitReply = async (msg, question, limit = 60000) => {
@@ -80,7 +81,7 @@ module.exports = client => {
     let embed = new Discord.RichEmbed()
       .addField(title, content)
       .setColor(!color ? 0xff6961 : color)
-      .setFooter(`� 2018 Andreasaoneo || https://andreats.com/`, client.user.avatarURL);
+      .setFooter(`© Azen 2020`, client.user.avatarURL);
     channel.send(embed);
   };
 
@@ -144,6 +145,48 @@ module.exports = client => {
 
   client.unmuteuser = async (uid) => {
 
+  }
+
+  client.blockMessage = function(message) {
+    if (message.guild) {
+      const settings = message.guild ?
+      client.settings.get(message.guild.id) :
+      client.config.defaultSettings;
+      if (settings.blocked) {
+        if (settings.blocked[message.channel.id]){
+          if (settings.blocked[message.channel.id].length > 0) {
+            let modlog = message.guild.channels.find(channel => channel.name === settings.modLogChannel);
+            for (i=0;i<Object.keys(settings.blocked); i++) {
+              for (j=0;j<settings.blocked[message.channel.id].length;j++) {
+                if (message.content.indexOf(settings.blocked[message.channel.id][j]) != -1) {
+                  try {
+                    message.delete()
+                    client.log(`MOD LOG`, `Deleted message ${message.content} by ${message.author.tag} in server ${message.guild.name}, [${message.channel.id}]`, `Success!`)
+                  } catch (error) {
+                    client.error(`ModErr`, error, `Error deleting blocked message`)
+                  }
+                  
+                  
+                  if (!modlog) {
+                    console.log(`No modlog`);
+                  } else if (settings.modLogEnabled.toLowerCase() === `true`) {
+                    let embed = new Discord.RichEmbed()
+                      .setTitle('MessageBlock')
+                      .setAuthor('Mod-log entry | Block', message.author.avatarURL)
+                      .addField(`Author:`, message.author.tag)
+                      .addField(`Message:`, message.content, true)
+                      .setTimestamp()
+                      .setColor(0xff6961)
+                    modlog.send(embed);
+                  }
+                }
+              }
+              
+            }
+          }
+        }
+      }
+    }
   }
 
   String.prototype.toProperCase = function() {

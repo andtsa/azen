@@ -6,7 +6,7 @@ exports.run = async (client, message, args, level) => {
   const embed = new Discord.RichEmbed()
     .addField(`Pong! :ping_pong:`, `Latency is ${msg.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`)
     .setColor(0xff6961)
-    .setFooter(`© 2019 Andreats || https://andreats.com/`, client.user.avatarURL);
+    .setFooter(`Â© 2017 Andreats`, client.user.avatarURL);
   msg.edit(embed);
 };
 
